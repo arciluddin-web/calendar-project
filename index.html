@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <button class="btn-nav" id="btn-prev" aria-label="Previous month">&#8249;</button>
+    <h1 id="current-month-label">April 2026</h1>
+    <button class="btn-nav" id="btn-next" aria-label="Next month">&#8250;</button>
+    <button class="btn-primary" id="btn-add-event">+ Add Event</button>
+  </header>
+
+  <main class="calendar-container">
+    <div class="calendar-grid-wrapper">
+      <div class="calendar-grid" role="grid" aria-label="Calendar"></div>
+    </div>
+  </main>
+
+  <!-- Event Modal -->
+  <div class="modal-overlay hidden" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title-text">Add Event</h2>
+        <button class="modal-close" id="btn-modal-close" aria-label="Close modal">&#215;</button>
+      </div>
+
+      <form id="event-form" novalidate>
+        <div class="form-group">
+          <label for="field-title">Title <span aria-hidden="true">*</span></label>
+          <input type="text" id="field-title" name="title" maxlength="100" autocomplete="off" placeholder="Event title" required>
+          <span class="field-error" id="error-title" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="field-date">Date <span aria-hidden="true">*</span></label>
+          <input type="date" id="field-date" name="date" required>
+          <span class="field-error" id="error-date" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="field-time">Time <span style="font-weight:400;color:#6b7280">(optional)</span></label>
+          <input type="time" id="field-time" name="time">
+          <span class="field-error" id="error-time" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="field-description">Description <span style="font-weight:400;color:#6b7280">(optional)</span></label>
+          <textarea id="field-description" name="description" maxlength="500" rows="3" placeholder="Add details..."></textarea>
+          <span class="field-error" id="error-description" role="alert"></span>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-danger hidden" id="btn-delete-event">Delete</button>
+          <button type="submit" class="btn-primary" id="btn-save-event">Save Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast-msg" role="status" aria-live="polite"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
